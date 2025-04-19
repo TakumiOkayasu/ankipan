@@ -1,15 +1,5 @@
+import 'package:ankipan/deck.dart';
 import 'package:flutter/material.dart';
-
-class Deck {
-  final String title;
-  final int reviewedToday;
-  final int totalCards;
-
-  Deck(
-      {required this.title,
-      required this.reviewedToday,
-      required this.totalCards});
-}
 
 final dummyDecks = [
   Deck(title: "英単語", reviewedToday: 10, totalCards: 100),
