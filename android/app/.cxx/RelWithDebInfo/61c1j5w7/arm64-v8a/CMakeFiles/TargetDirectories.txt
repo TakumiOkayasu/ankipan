@@ -1,0 +1,2 @@
+/Users/yamazaki/prog/flutter/ankipan/android/app/.cxx/RelWithDebInfo/61c1j5w7/arm64-v8a/CMakeFiles/edit_cache.dir
+/Users/yamazaki/prog/flutter/ankipan/android/app/.cxx/RelWithDebInfo/61c1j5w7/arm64-v8a/CMakeFiles/rebuild_cache.dir
