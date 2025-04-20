@@ -4,7 +4,9 @@ class Deck {
   final int totalCards;
 
   Deck(
-      {required this.title,
+    {
+        required this.title,
         required this.reviewedToday,
-        required this.totalCards});
+        required this.totalCards
+    });
 }
