@@ -8,11 +8,10 @@ import 'package:path_provider/path_provider.dart';
 import 'tables/card.dart';
 import 'tables/collection.dart';
 import 'tables/deletion_log.dart';
-// 各テーブル定義をインポート
 import 'tables/note.dart';
 import 'tables/review_log.dart';
 
-part 'database.g.dart';
+part 'detabase.g.dart';
 
 LazyDatabase _openConnection() {
   return LazyDatabase(() async {
