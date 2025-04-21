@@ -1,18 +1,19 @@
 {
 	"cmake.ignoreCMakeListsMissing": true,
+	"dart.lineLength": 150,
 	"[dart]": {
 		"editor.tabSize": 2,
 		"editor.insertSpaces": true,
 		"editor.detectIndentation": false,
 		"editor.formatOnSave": true,
+		"editor.formatOnType": true,
+		"editor.formatOnPaste": true,
 		"editor.codeActionsOnSave": {
 			"source.sortMembers": "always",
 			"source.organizeImports": "always",
 			"source.fixAll": "always"
 		},
 		"editor.suggest.insertMode": "replace",
-		"editor.defaultFormatter": "esbenp.prettier-vscode",
-		"editor.inlayHints.enabled": "offUnlessPressed"
+		"editor.defaultFormatter": "Dart-Code.dart-code",
 	},
-	"dart.lineLength": 150
 }
