@@ -1,40 +1,19 @@
 import 'package:flutter/material.dart';
-/*
-class LongPressFloatingActionButton extends StatelessWidget {
-  final VoidCallback onTap;
- final VoidCallback? onLongPressed;
- 
-  const LongPressFloatingActionButton({
-    required this.onTap,
-    this.onLongPressed,
-    Key? key,
-  }) : super(key: key);
- 
-  @override
-  Widget build(BuildContext context) {
-      return GestureDetector(
-      onLongPress: onLongPressed,
-      child: FloatingActionButton(
-        onPressed: onTap,
-      ),
-    );
-  }
-}*/
 
 class LongPressFloatingActionButton extends StatefulWidget {
   const LongPressFloatingActionButton({super.key});
 
   @override
+  // ignore: library_private_types_in_public_api
   _LongPressFloatingActionButtonState createState() => _LongPressFloatingActionButtonState();
 }
 
 class _LongPressFloatingActionButtonState extends State<LongPressFloatingActionButton> {
-  bool _showOptions = false;
+  bool _showFABDetails = false;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('FAB 長押しメニュー')),
       body: Stack(
         children: [
           Positioned(
@@ -44,24 +23,21 @@ class _LongPressFloatingActionButtonState extends State<LongPressFloatingActionB
               mainAxisSize: MainAxisSize.min,
               crossAxisAlignment: CrossAxisAlignment.end,
               children: [
-                if (_showOptions) ...[
-                  _buildOption(Icons.folder, 'デッキを新規作成', () {
-                    print('デッキ新規作成');
-                  }),
-                  _buildOption(Icons.download, '共有デッキを取得', () {
-                    print('共有デッキ取得');
-                  }),
-                  _buildOption(Icons.add, 'ノートを追加', () {
-                    print('ノート追加');
-                  }),
+                if (_showFABDetails) ...[
+                  _buildOption(Icons.folder, 'デッキを新規作成', () {}),
+                  _buildOption(Icons.download, '共有デッキを取得', () {}),
+                  _buildOption(Icons.add, 'ノートを追加', () {}),
                   const SizedBox(height: 8),
                 ],
                 GestureDetector(
                   onLongPress: () => _toggleOptions(true),
-                  onTap: () => _toggleOptions(false),
+                  onTap: () => {},
                   child: FloatingActionButton(
-                    child: Icon(_showOptions ? Icons.close : Icons.menu),
-                    onPressed: () => _toggleOptions(!_showOptions),
+                    child: Icon(_showFABDetails ? Icons.close : Icons.add),
+                    onPressed: () => {
+                      // 閉じる時はタップで
+                      if (_showFABDetails) {_toggleOptions(false)}
+                    },
                   ),
                 ),
               ],
@@ -100,7 +76,7 @@ class _LongPressFloatingActionButtonState extends State<LongPressFloatingActionB
 
   void _toggleOptions(bool show) {
     setState(() {
-      _showOptions = show;
+      _showFABDetails = show;
     });
   }
 }
