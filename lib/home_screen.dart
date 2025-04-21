@@ -1,3 +1,4 @@
+import 'package:ankipan/components/long_press_floating_action_button.dart';
 import 'package:ankipan/deck_card.dart';
 import 'package:ankipan/summary_card.dart';
 import 'package:flutter/material.dart';
@@ -38,12 +39,7 @@ class HomeScreen extends StatelessWidget {
           ],
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          Navigator.pushNamed(context, '/createDeck');
-        },
-        child: const Icon(Icons.add),
-      ),
+      floatingActionButton: const LongPressFloatingActionButton(),
     );
   }
 }
