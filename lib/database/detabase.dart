@@ -33,9 +33,20 @@ LazyDatabase _openConnection() {
 class AppDatabase extends _$AppDatabase {
   AppDatabase() : super(_openConnection());
 
+  @override
+  MigrationStrategy get migration => MigrationStrategy(
+        onCreate: (Migrator m) async {
+          return await m.createAll();
+        },
+        onUpgrade: (Migrator m, from, to) async {
+          // TODO: マイグレーション処理を書く
+          if (from == 0) {
+            await m.createAll();
+          }
+        },
+      );
+
   // スキーマのバージョン
   @override
   int get schemaVersion => 1;
-
-  // 必要ならマイグレーションやシード処理もここで定義できます
 }
