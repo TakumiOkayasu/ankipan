@@ -1,3 +1,5 @@
+import 'package:ankipan/database/database.dart';
+import 'package:ankipan/debug/show_db.dart';
 import 'package:flutter/material.dart';
 
 class LongPressFloatingActionButton extends StatefulWidget {
@@ -10,6 +12,7 @@ class LongPressFloatingActionButton extends StatefulWidget {
 
 class _LongPressFloatingActionButtonState extends State<LongPressFloatingActionButton> {
   bool _showFABDetails = false;
+  final debugDB = AppDatabase();
 
   @override
   Widget build(BuildContext context) {
@@ -30,13 +33,22 @@ class _LongPressFloatingActionButtonState extends State<LongPressFloatingActionB
                   const SizedBox(height: 8),
                 ],
                 GestureDetector(
-                  onLongPress: () => _toggleOptions(true),
-                  onTap: () => {},
+                  onLongPress: () => _toggleOptions(true), // 長押しでメニュー展開
                   child: FloatingActionButton(
                     child: Icon(_showFABDetails ? Icons.close : Icons.add),
                     onPressed: () => {
                       // 閉じる時はタップで
-                      if (_showFABDetails) {_toggleOptions(false)}
+                      if (_showFABDetails)
+                        {_toggleOptions(false)}
+                      else
+                        {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (_) => DriftDatabaseDebugPage(db: debugDB),
+                            ),
+                          ),
+                        }
                     },
                   ),
                 ),
