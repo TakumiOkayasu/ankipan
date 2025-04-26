@@ -31,7 +31,8 @@ class _DriftDatabaseDebugPageState extends State<DriftDatabaseDebugPage> {
                   children: columns.map((col) {
                     return ListTile(
                       title: Text(col['name']),
-                      subtitle: Text("型: ${col['type']} / 主キー: ${col['pk']} / NULL許容: ${col['notnull'] == 0 ? 'Yes' : 'No'}"),
+                      subtitle: Text(
+                          "型: ${col['type']} / 主キー: ${col['pk']} / NULL許容: ${col['notnull'] == 0 ? 'Yes' : 'No'}"),
                     );
                   }).toList(),
                 );
@@ -47,14 +48,29 @@ class _DriftDatabaseDebugPageState extends State<DriftDatabaseDebugPage> {
   }
 
   Future<void> _loadSchema() async {
-    // テーブル名一覧を取得（sqlite_master）
-    final tables = await widget.db.customSelect("SELECT name FROM sqlite_master WHERE type='table' AND name NOT LIKE 'sqlite_%';").get();
+    try {
+      print("🌱 テーブル一覧取得開始");
 
-    tableNames = tables.map((row) => row.data['name'].toString()).toList();
+      final tables = await widget.db
+          .customSelect(
+              "SELECT name FROM sqlite_master WHERE type='table' AND name NOT LIKE 'sqlite_%';")
+          .get();
+      print("🎯 テーブル一覧: $tables");
 
-    for (final table in tableNames) {
-      final columns = await widget.db.customSelect("PRAGMA table_info($table);").get();
-      tableSchemas[table] = columns.map((c) => c.data).toList();
+      tableNames = tables.map((row) => row.data['name'].toString()).toList();
+
+      for (final table in tableNames) {
+        print("🔍 $table のカラム情報取得中...");
+        final columns =
+            await widget.db.customSelect("PRAGMA table_info($table);").get();
+        tableSchemas[table] = columns.map((c) => c.data).toList();
+      }
+
+      print("✅ テーブル情報読み込み完了");
+      setState(() {});
+    } catch (e, stack) {
+      print("🔥 エラー発生: $e");
+      print(stack);
     }
   }
 }
