@@ -16,7 +16,7 @@ class DeckCard extends StatelessWidget {
       margin: const EdgeInsets.only(bottom: 12),
       child: ListTile(
         title: Text(deck.title),
-        subtitle: Text("今日: ${deck.reviewedToday} / 全体: ${deck.totalCards}枚"),
+        subtitle: Text("済: ${deck.reviewedToday} / 全体: ${deck.totalCards}枚"),
         trailing: const Icon(Icons.arrow_forward_ios),
         onTap: () {
           Navigator.pushNamed(context, '/deckDetail', arguments: deck);

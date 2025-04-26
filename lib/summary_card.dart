@@ -15,9 +15,9 @@ class SummaryCard extends StatelessWidget {
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text("今日の学習"),
+                Text("現在の課題"),
                 SizedBox(height: 4),
-                Text("10枚 / 30枚",
+                Text("30枚", // TODO: 全体のカード数を取得する
                     style: TextStyle(fontWeight: FontWeight.bold)),
               ],
             )
