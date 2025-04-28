@@ -16,9 +16,10 @@ class _LongPressFloatingActionButtonState extends State<LongPressFloatingActionB
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Stack(
+    return SafeArea(
+      child: Stack(
         children: [
+          // メインコンテンツエリア（ここに他のウィジェットも置ける）
           Positioned(
             right: 16,
             bottom: 16,
@@ -35,26 +36,25 @@ class _LongPressFloatingActionButtonState extends State<LongPressFloatingActionB
                 GestureDetector(
                   onLongPress: () => _toggleOptions(true), // 長押しでメニュー展開
                   child: FloatingActionButton(
+                    heroTag: "main-fab", // heroTagエラー防止
                     child: Icon(_showFABDetails ? Icons.close : Icons.add),
-                    onPressed: () => {
-                      // 閉じる時はタップで
-                      if (_showFABDetails)
-                        {_toggleOptions(false)}
-                      else
-                        {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (_) => DriftDatabaseDebugPage(db: debugDB),
-                            ),
+                    onPressed: () {
+                      if (_showFABDetails) {
+                        _toggleOptions(false);
+                      } else {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (_) => DriftDatabaseDebugPage(db: debugDB),
                           ),
-                        }
+                        );
+                      }
                     },
                   ),
                 ),
               ],
             ),
-          )
+          ),
         ],
       ),
     );
