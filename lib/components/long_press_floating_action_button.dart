@@ -19,7 +19,6 @@ class _LongPressFloatingActionButtonState extends State<LongPressFloatingActionB
     return SafeArea(
       child: Stack(
         children: [
-          // メインコンテンツエリア（ここに他のウィジェットも置ける）
           Positioned(
             right: 16,
             bottom: 16,
